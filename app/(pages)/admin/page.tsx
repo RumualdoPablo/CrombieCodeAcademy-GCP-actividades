@@ -1,10 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AdminPage() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const [categoryId, setCategoryId] = useState("");
+    const [categories, setCategories] = useState<Array<{ categoryId: string; name: string }>>([]);
+
+    useEffect(() => {
+        fetch("/api/categories")
+            .then((res) => res.json())
+            .then((data) => setCategories(data.categories));
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -12,7 +20,7 @@ export default function AdminPage() {
         const res = await fetch("/api/products", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, description, price: Number(price) }),
+            body: JSON.stringify({ name, description, price: Number(price), categoryId }),
         });
 
         if (res.ok) {
@@ -20,6 +28,7 @@ export default function AdminPage() {
             setName("");
             setDescription("");
             setPrice("");
+            setCategoryId("");
         } else {
             alert("Error al crear el producto");
         }
@@ -57,6 +66,22 @@ export default function AdminPage() {
                         className="w-full p-2 border rounded text-black"
                         required
                     />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">Categoría</label>
+                    <select
+                        value={categoryId}
+                        onChange={(e) => setCategoryId(e.target.value)}
+                        className="w-full p-2 border rounded text-black"
+                        required
+                    >
+                        <option value="" disabled>Selecciona una categoría</option>
+                        {categories.map((category) => (
+                            <option key={category.categoryId} value={category.categoryId}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
                     Crear Producto
