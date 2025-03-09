@@ -5,11 +5,26 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { productID: string } }
 ) {
-  const productID = (await params).productID;
-  const product = await prisma.product.findUnique({
-    where: { productId: productID },
-  });
-  return NextResponse.json({ product }, { status: 200 });
+  try {
+    const product = await prisma.product.findUnique({
+      where: { productId: params.productID },
+      include: { category: true },
+    });
+
+    if (!product) {
+      return NextResponse.json(
+        { error: "Producto no encontrado" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(product);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Error al obtener producto" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function PUT(
