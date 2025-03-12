@@ -4,7 +4,7 @@ import Card from "@/components/Card";
 import ProfileCard from "@/components/ProfileCard";
 import Button from "@/components/Button";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
     return (
         <main className="min-h-screen bg-gray-100 text-gray-800 p-8">
             <section className="max-w-4xl mx-auto text-center">
