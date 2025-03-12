@@ -11,7 +11,7 @@ const CategoryPage = () => {
         <div className="flex flex-col">
             <h1 className="font-extrabold">Categorías disponibles</h1>
             {categories.map((category) => (
-                <div className="">
+                <div className="" key={category}>
                     <Link
                         key={category}
                         href={`${pathname}/${category}`}
