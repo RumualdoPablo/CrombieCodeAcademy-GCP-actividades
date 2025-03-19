@@ -29,7 +29,14 @@ export default function AdminPage() {
             body: formData,
         });
 
-        if (res.ok) alert("Producto creado!");
+        if (res.ok) {
+            alert("Producto creado!");
+            setName("");
+            setDescription("");
+            setPrice("");
+            setCategoryId("");
+            setImage(null);
+        }
     };
 
     return (

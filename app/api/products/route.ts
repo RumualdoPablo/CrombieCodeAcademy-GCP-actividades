@@ -10,7 +10,6 @@ const BUCKET_NAME = process.env.GCP_BUCKET_NAME!;
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    console.log(searchParams);
 
     const page = parseInt(searchParams.get("page") || "1", 10);
     const limit = parseInt(searchParams.get("limit") || "10", 10);
@@ -47,7 +46,6 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: Request) {
   const formData = await req.formData();
-  console.log(formData);
 
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
