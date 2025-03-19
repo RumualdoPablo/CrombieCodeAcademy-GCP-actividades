@@ -7,6 +7,7 @@ export default function AdminPage() {
     const [price, setPrice] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [categories, setCategories] = useState<Array<{ categoryId: string; name: string }>>([]);
+    const [image, setImage] = useState<File | null>(null);
 
     useEffect(() => {
         fetch("/api/categories")
@@ -16,22 +17,19 @@ export default function AdminPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("price", price);
+        formData.append("category", categoryId)
+        if (image) formData.append("image", image);
 
         const res = await fetch("/api/products", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, description, price: Number(price), categoryId }),
+            body: formData,
         });
 
-        if (res.ok) {
-            alert("Producto creado correctamente");
-            setName("");
-            setDescription("");
-            setPrice("");
-            setCategoryId("");
-        } else {
-            alert("Error al crear el producto");
-        }
+        if (res.ok) alert("Producto creado!");
     };
 
     return (
@@ -67,6 +65,7 @@ export default function AdminPage() {
                         required
                     />
                 </div>
+                <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} required />
                 <div className="mb-4">
                     <label className="block text-gray-700 font-bold mb-2">Categoría</label>
                     <select

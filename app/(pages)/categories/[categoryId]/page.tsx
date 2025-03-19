@@ -1,6 +1,7 @@
 "use client"
 import { useParams, usePathname } from 'next/navigation';
 import { products } from '@/lib/products';
+import Image from 'next/image';
 
 const CategoryById = () => {
     const pathname = useParams();
@@ -11,7 +12,7 @@ const CategoryById = () => {
 
             {productsByCategory.map((product) => (
                 <div key={product.name} className="bg-slate-400 shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform">
-                    <img src={product.name} alt={product.name} className="w-full h-80" />
+                    <Image src={product.name} alt={product.name} className="w-full h-80" />
                     <div className="p-4">
                         <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
                         <p className="text-xl font-bold text-blue-600">{product.price}</p>

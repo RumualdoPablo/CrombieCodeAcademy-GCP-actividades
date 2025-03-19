@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface ProfileCardProps {
     name: string;
     bio: string;
@@ -7,7 +8,7 @@ interface ProfileCardProps {
 export default function ProfileCard({ name, bio, avatar }: ProfileCardProps) {
     return (
         <div className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition">
-            <img
+            <Image
                 src={avatar}
                 alt={name}
                 className="w-24 h-24 rounded-full mx-auto mb-4"

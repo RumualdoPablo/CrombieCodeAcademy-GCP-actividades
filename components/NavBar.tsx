@@ -11,7 +11,31 @@ const NavBar = () => {
                 <Link href="/about" className="hover:text-blue-500 transition duration-300 ">About</Link>
                 <Link href="/categories" className="hover:text-blue-500 transition duration-300 ">Categories</Link>
                 <Link href="/products" className="hover:text-blue-500 transition duration-300">Products</Link>
+<<<<<<< Updated upstream
                 <Link href="/profile" className="hover:text-blue-500 transition duration-300 absolute right-4">Profile</Link>
+=======
+                {isAuthenticated ? (
+                    <>
+                        <Link href="/profile" className="hover:text-blue-500 transition duration-300 absolute right-4">Profile</Link>
+                        <button
+                            onClick={() => startTransition(logoutAction)}
+                            disabled={isPending}
+                            className="bg-red-500 px-3 py-1 rounded"
+                        >
+                            {isPending ? "Cerrando..." : "Cerrar Sesión"}
+                        </button>
+                    </>
+
+                ) : (
+                    <>
+                        <Link href="/login">Iniciar Sesión</Link>
+                        <Link href="/register">Registrarse</Link>
+                    </>
+
+                )
+
+                }
+>>>>>>> Stashed changes
             </div>
         </div>
     )

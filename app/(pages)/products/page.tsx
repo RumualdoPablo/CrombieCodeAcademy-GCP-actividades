@@ -2,6 +2,7 @@
 
 import { Product } from "@prisma/client"
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -26,7 +27,7 @@ export default function Products() {
         search ?? queryParams.set("search", search);
 
         router.push(`/products?${queryParams.toString()}`, { scroll: false });
-    }, [page, search]);
+    }, [page, search, router]);
 
     return (
         <main className="min-h-screen bg-gray-100 text-gray-800 p-8">
@@ -45,11 +46,13 @@ export default function Products() {
                     {products.map((product) => (
                         <div key={product.productId} className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform">
                             <div className="p-4">
-                                <Link key={product.productId} href={`/products/${product.productId}`}>
-                                    <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
-                                    <p className="text-xl font-bold text-blue-600">{product.price}</p>
+                                <Image src={product.image} alt={product.name} height={150} width={150} />
+                                <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
+                                <p className="text-xl font-bold text-blue-600">{product.price}</p>
+                                <Link key={product.productId} href={`/products/${product.productId}`}
+                                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                                    Ver más
                                 </Link>
-                                <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Buy Now</button>
                             </div>
                         </div>
                     ))}

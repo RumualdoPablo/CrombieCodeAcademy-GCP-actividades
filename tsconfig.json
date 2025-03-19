@@ -25,3 +25,10 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prisma/seed.js"],
   "exclude": ["node_modules"]
 }
+
+// "strict": false,
+// "noImplicitAny": false,
+// "skipLibCheck": true,
+// "allowJs": true,
+// "checkJs": false,
+// "forceConsistentCasingInFileNames": false,
