@@ -1,13 +1,18 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+interface Params {
+  productID: string;
+}
+
 export async function GET(
   req: NextRequest,
-  { params }: { params: { productID: string } }
+  context: { params: Promise<Params> }
 ) {
   try {
+    const { productID } = await context.params;
     const product = await prisma.product.findUnique({
-      where: { productId: params.productID },
+      where: { productId: productID },
       include: { category: true },
     });
 
@@ -28,10 +33,10 @@ export async function GET(
 }
 
 export async function PUT(
-  req: Request,
-  { params }: { params: { productID: string } }
+  req: NextRequest,
+  context: { params: Promise<Params> }
 ) {
-  const productID = (await params).productID;
+  const { productID } = await context.params;
   const body = await req.json();
   const productUpdated = await prisma.product.update({
     where: { productId: productID },
@@ -41,10 +46,10 @@ export async function PUT(
 }
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { productID: string } }
+  req: NextRequest,
+  context: { params: Promise<Params> }
 ) {
-  const productID = (await params).productID;
+  const { productID } = await context.params;
   const productDeleted = await prisma.product.delete({
     where: { productId: productID },
   });

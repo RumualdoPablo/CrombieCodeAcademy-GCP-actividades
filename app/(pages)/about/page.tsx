@@ -10,7 +10,7 @@ export default function About() {
                 <div className="flex justify-center space-x-4 cursor-pointer">
                     <div className="bg-white shadow-lg rounded-lg p-6 w-1/3 hover:scale-105 transition-transform">
                         <h2 className="text-2xl font-semibold mb-2">Our Mission</h2>
-                        <p>To provide the highest quality products that meet our customers' needs.</p>
+                        <p>To provide the highest quality products that meet our customers needs.</p>
                     </div>
                     <div className="bg-white shadow-lg rounded-lg p-6 w-1/3 hover:scale-105 transition-transform">
                         <h2 className="text-2xl font-semibold mb-2">Our Vision</h2>
