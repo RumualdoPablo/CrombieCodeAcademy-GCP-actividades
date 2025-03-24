@@ -37,4 +37,5 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
+            --service-account github-actions@${{ secrets.GCP_PROJECT }}.iam.gserviceaccount.com
             --set-env-vars DATABASE_URL=${{ secrets.DATABASE_URL }}
