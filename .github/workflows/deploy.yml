@@ -43,3 +43,5 @@ jobs:
       - name: Ejecutar Migraciones en Cloud SQL
         run: |
           npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
