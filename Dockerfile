@@ -39,4 +39,4 @@ ENV PORT=3000
 EXPOSE 3000
 
 # 12. Comando de inicio
-CMD ["npx", "migrate", "deploy" && "npm", "run", "start"]
+CMD ["npm", "run", "start"]

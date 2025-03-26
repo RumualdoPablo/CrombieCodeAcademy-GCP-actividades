@@ -43,6 +43,6 @@ jobs:
 
       - name: Ejecutar Migraciones en Cloud SQL
         run: |
-          npx prisma migrate deploy
+          gcloud run exec mi-app --region=us-central1 -- npx prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
