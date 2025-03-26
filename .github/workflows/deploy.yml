@@ -41,8 +41,8 @@ jobs:
             --set-env-vars "NODE_ENV=production" \
             --set-env-vars "DATABASE_URL=${{ secrets.DATABASE_URL }}"
 
-      - name: Ejecutar Migraciones en Cloud SQL
-        run: |
-          gcloud run exec mi-app --region=us-central1 -- npx prisma migrate deploy
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      # - name: Ejecutar Migraciones en Cloud SQL
+      #   run: |
+      #     gcloud run exec mi-app --region=us-central1 -- npx prisma migrate deploy
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
