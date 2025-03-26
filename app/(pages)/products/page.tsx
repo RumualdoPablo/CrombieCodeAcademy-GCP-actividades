@@ -16,7 +16,7 @@ export default function Products() {
     const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
-        fetch(`/api/products?page=${page}&limit=4&search=${search}`)
+        fetch(`/api/products`)
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data.products);
