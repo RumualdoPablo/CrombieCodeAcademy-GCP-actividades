@@ -37,6 +37,8 @@ export async function GET(req: NextRequest) {
       totalPages: Math.ceil(totalProducts / limit),
     });
   } catch (error) {
+    console.error({ message: "Fallo al obtener los productos", error });
+
     return NextResponse.json(
       { error: "Error al obtener productos" },
       { status: 500 }
