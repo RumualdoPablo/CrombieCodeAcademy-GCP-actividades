@@ -1,9 +1,10 @@
 import { PageProps } from "@/.next/types/app/(pages)/products/[id]/page";
+import { baseUrl } from "@/lib/definitions";
 import { notFound } from "next/navigation";
 
 export default async function ProductDetail({ params }: PageProps) {
     const productId = (await params).id
-    const res = await fetch(`http://localhost:3000/api/products/${productId}`);
+    const res = await fetch(`${baseUrl}/api/products/${productId}`);
 
     if (!res.ok) return notFound();
 

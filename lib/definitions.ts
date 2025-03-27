@@ -1,3 +1,4 @@
+import { env } from "process";
 import { z } from "zod";
 
 export const SignupFormSchema = z.object({
@@ -34,3 +35,5 @@ export type FormState =
       message?: string;
     }
   | undefined;
+
+export const baseUrl = process.env.BASE_URL;
