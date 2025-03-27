@@ -10,6 +10,7 @@ module.exports = {
       {
         protocol: "https",
         hostname: "storage.googleapis.com",
+        pathname: "/ejemplo-bucket-prc/**",
       },
     ],
   },
