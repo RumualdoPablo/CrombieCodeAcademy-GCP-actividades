@@ -39,4 +39,4 @@ ENV PORT=3000
 EXPOSE 3000
 
 # 12. Comando de inicio
-CMD ["npm", "run", "start"]
+CMD npx prisma migrate deploy && npm start
