@@ -44,8 +44,8 @@ jobs:
             --set-env-vars "GCP_BUCKET_NAME=${{ secrets.GCP_BUCKET_NAME }}" \
             --set-env-vars "GCP_BASE_URL=${{ secrets.GCP_BASE_URL }}"
 
-      # - name: Ejecutar Migraciones en Cloud SQL
-      #   run: |
-      #     gcloud run exec mi-app --region=us-central1 -- npx prisma migrate deploy
-      #   env:
-      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Ejecutar Migraciones en Cloud SQL
+        run: |
+          gcloud run exec mi-app --region=us-central1 -- npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
