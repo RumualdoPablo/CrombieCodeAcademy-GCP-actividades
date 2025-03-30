@@ -46,7 +46,7 @@ export default function Products() {
                     {products?.map((product) => (
                         <div key={product.productId} className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform">
                             <div className="p-4">
-                                <Image src={product.image ?? "/images/product1"} alt={product.name} height={200} width={200} />
+                                <Image src={product.image ?? "/images/product1"} alt={product.name} height={200} width={200} unoptimized />
                                 <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
                                 <p className="text-xl font-bold text-blue-600">{product.price}</p>
                                 <Link key={product.productId} href={`/products/${product.productId}`}
