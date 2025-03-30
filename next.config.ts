@@ -12,6 +12,10 @@ module.exports = {
         hostname: "storage.googleapis.com",
         pathname: "/ejemplo-bucket-prc/**",
       },
+      {
+        protocol: "https",
+        hostname: "ejemplo-bucket-prc.storage.googleapis.com",
+      },
     ],
   },
 };
